@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>阚海斌 - 个人主页</title>
+    <!-- VUE.js -->
+    <script src="js/vue-v2.5.16.js"></script>
+    <!-- vue-tables-2.js -->
+    <script src="js/vue-tables-2.min.js"></script>
+    <!-- axios -->
+    <script src="js/axios-v0.18.0.min.js"></script>
+    <!-- Element UI -->
+    <link rel="stylesheet" href="css/elementUI/index.css">
+    <script src="js/elementUI/index.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap-v4.0.0.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        /* body {font-family: "Microsoft Yahei";} */
+        body {
+            padding-top:10px; 
+        }
+        .No {
+            display: inline-block;
+            width: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-bottom:10px;">
+            <a class="nav-item" style="margin-right:10px;">
+                <img 
+                src="img/fudan.png" 
+                class="img-fluid"
+                style="max-height:32px;"
+                alt="fudan university"
+                >
+            </a>
+            
+            <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="true">个人信息</a>
+            <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-interest" role="tab" aria-controls="nav-interest" aria-selected="false">研究兴趣</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-teaching" role="tab" aria-controls="nav-teaching" aria-selected="false">教学经历</a> -->
+            <a class="nav-item nav-link" id="nav-working-tab" data-toggle="tab" href="#nav-working" role="tab" aria-controls="nav-working" aria-selected="false">工作经历</a>
+            <a class="nav-item nav-link" id="nav-prize-tab" data-toggle="tab" href="#nav-prize" role="tab" aria-controls="nav-prize" aria-selected="false">获奖情况</a>
+            <a class="nav-item nav-link" id="nav-academy-tab" data-toggle="tab" href="#nav-academy" role="tab" aria-controls="nav-academy" aria-selected="false">学术兼职</a>
+            <a class="nav-item nav-link" id="nav-project-tab" data-toggle="tab" href="#nav-project" role="tab" aria-controls="nav-project" aria-selected="false">负责的主要项目</a>
+            <a class="nav-item nav-link" id="nav-paper-tab" data-toggle="tab" href="#nav-paper" role="tab" aria-controls="nav-paper" aria-selected="false">主要SCI杂志文章</a>
+            <a class="nav-item nav-link" id="nav-confpaper-tab" data-toggle="tab" href="#nav-confpaper" role="tab" aria-controls="nav-confpaper" aria-selected="false">主要会议论文</a>
+        </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12" id="personal">
+                                <h2>阚 海 斌(Haibin Kan)</h2>
+                            </div>
+                            <div class="col-md-12"><hr/></div>
+                            
+                            <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>{{info.tel.name}}</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    {{info.tel.row[0]}}
+                                </div>
+                                <div class="col-md-12"><hr/></div>
+                                
+                                <div class="col-md-4">
+                                    <strong>{{info.mobile.name}}</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    {{info.mobile.row[0]}}
+                                </div>
+                                <div class="col-md-12"><hr/></div>
+                                
+                                <div class="col-md-4">
+                                    <strong>{{info.email.name}}</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    {{info.email.row[0]}}
+                                </div>
+                                <div class="col-md-12"><hr/></div>
+    
+                                <div class="col-md-4">
+                                    <strong>{{info.birth.name}}</strong>
+                                </div>
+                                <div 
+                                class="col-md-8">
+                                    {{info.birth.row[0]}}
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong>{{info.address.name}}</strong>
+                                </div>
+                                <div 
+                                class="col-md-12"
+                                v-for="(vv, ii) in info.address.row">
+                                    {{vv}}
+                                </div>
+                                <div class="col-md-12"><hr/></div>
+                                
+                                <div class="col-md-12">
+                                    <strong>{{info.edu.name}}</strong>
+                                </div>
+                                <div 
+                                class="col-md-12">
+                                    {{info.edu.row[0]}}
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-12"><hr/></div>
+    
+                        </div>
+                    </div>                
+                    <div class="col-md-3 text-center">
+                        <img 
+                        src="img/hbkan.jpg" 
+                        class="img-fluid"
+                        style="margin-bottom:5px;"
+                        alt="个人照片."
+                        >
+                    </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-5" id="interest">
+                            <strong>{{info.interest.name}}</strong>
+                        </div>
+                        <div class="col-md-7 text-right">{{info.interest.row[0]}}</div>
+                        <div class="col-md-12"><hr/></div>
+    
+                        <div class="col-md-5" id="teaching">
+                            <strong>{{info.teaching.name}}</strong>
+                        </div>
+                        <div class="col-md-7 text-right">{{info.teaching.row[0]}}</div>
+    
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-working" role="tabpanel" aria-labelledby="nav-working">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+    
+                        <div class="col-md-12" id="working">
+                            <h2>{{info.working.name}}</h2>
+                        </div>
+                        <div class="col-md-12"><hr/></div>
+                        <div 
+                        class="col-md-12"
+                        v-for="(vv, ii) in info.working.row">
+                            {{vv}}
+                        </div>
+    
+                    </div>
+                </div>
+                    </div>
+            </div>
+            <div class="tab-pane fade" id="nav-prize" role="tabpanel" aria-labelledby="nav-prize">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+    
+                        <div class="col-md-12" id="prize">
+                            <h2>{{info.prize.name}}</h2>
+                        </div>
+                        <div class="col-md-12"><hr/></div>
+                        <div 
+                        class="col-md-12"
+                        v-for="(vv, ii) in info.prize.row">
+                            {{vv}}
+                        </div>
+    
+                    </div>
+                </div>
+                    </div>
+            </div>
+            <div class="tab-pane fade" id="nav-academy" role="tabpanel" aria-labelledby="nav-academy">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12" id="academy">
+                            <h2>{{info.academy.name}}</h2>
+                        </div>
+                        <div class="col-md-12"><hr/></div>
+                        <div 
+                        class="col-md-12"
+                        v-for="(vv, ii) in info.academy.row">
+                            {{vv}}
+                        </div>
+    
+                    </div>
+                </div>
+                    </div>
+            </div>
+            <div class="tab-pane fade" id="nav-project" role="tabpanel" aria-labelledby="nav-project">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+   
+                        <div class="col-md-12" id="project">
+                            <h2>{{info.project.name}}</h2>
+                        </div>
+                        <div class="col-md-12"><hr/></div>
+                        <div 
+                        class="col-md-12"
+                        v-for="(vv, ii) in info.project.row">
+                            <span class="No">{{ii+1}}.</span>{{vv}}
+                        </div>
+                    </div>
+                </div>
+                    </div>
+            </div>
+            <div class="tab-pane fade" id="nav-paper" role="tabpanel" aria-labelledby="nav-paper">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12" id="paper">
+                            <h2>{{info.paper.name}}</h2>
+                        </div>
+                        <div class="col-md-12"><hr/></div>
+                        <div 
+                        class="col-md-12"
+                        v-for="(vv, ii) in info.paper.row">
+                            <span class="No">{{ii+1}}.</span>{{vv}}
+                        </div>
+                    </div>
+                </div>
+                    </div>
+            </div>
+            <div class="tab-pane fade" id="nav-confpaper" role="tabpanel" aria-labelledby="nav-confpaper">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12" id="confpaper">
+                            <h2>{{info.confpaper.name}}</h2>
+                        </div>
+                        <div class="col-md-12"><hr/></div>
+                        <div 
+                        class="col-md-12"
+                        v-for="(vv, ii) in info.confpaper.row">
+                            <span class="No">{{ii+1}}.</span>{{vv}}
+                        </div>
+                    </div>
+                </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Vue setup should be at the end. -->
+<script src="data.js"></script>
+<script src="index.js"></script>
+</html>
